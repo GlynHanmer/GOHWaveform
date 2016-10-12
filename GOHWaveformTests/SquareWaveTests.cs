@@ -95,10 +95,21 @@ namespace GOHWaveformTests
 
 
         [TestMethod]
-        public void Value_ReturnsKnownResults_ForKnownInputs()
+        public void Value_ReturnsKnownValues_ForKnownPhases()
         {
             double dutyCycle = 0.25;
-
+            double[] phases = { 0.0, 0.2, dutyCycle * 2.0 * Math.PI, 3.0, 2.0 * Math.PI };
+            double[] expectedValues = { 1.0, 1.0, 0.0, 0.0, 1.0 };
+            SquareWave sw = new SquareWave(dutyCycle);
+            Assert.AreEqual(phases.Length, expectedValues.Length, "Known inputs and results test sets do not contain the same number of values.");
+            for (int count = 0; count < phases.Length; count++)
+            {
+                double phase = phases[count];
+                double actual = sw.Value(phase);
+                double expected = expectedValues[count];
+                string message = string.Format("Phase: {0}\nExpected: {1}\nActual:{2}", phase, expected, actual);
+                Assert.AreEqual(actual, expected, message);
+            }
         }
     }
 }
