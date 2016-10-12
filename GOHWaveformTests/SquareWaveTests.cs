@@ -97,6 +97,8 @@ namespace GOHWaveformTests
         [TestMethod]
         public void Value_ReturnsKnownResults_ForKnownInputs()
         {
+            double dutyCycle = 0.25;
+
         }
     }
 }
