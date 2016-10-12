@@ -51,5 +51,52 @@ namespace GOHWaveformTests
             }
             Assert.Fail();
         }
+
+        [TestMethod]
+        public void Value_ReturnsDouble()
+        {
+            double[] dutyCycles = { 0.0, 0.5, 1.0 };
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            foreach (double dutyCycle in dutyCycles)
+            {
+                foreach (double phase in phases)
+                {
+                    SquareWave sw = new SquareWave(dutyCycle);
+                    Assert.IsInstanceOfType(sw.Value(phase), typeof(double));
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Value_Returns0AlwaysForDutyCycleOf0()
+        {
+            double dutyCycle = 0.0;
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            double expected = 0.0;
+            SquareWave sw = new SquareWave(dutyCycle);
+            foreach (double phase in phases)
+            {
+                Assert.AreEqual(sw.Value(phase), expected);
+            }
+        }
+
+        [TestMethod]
+        public void Value_Returns1AlwaysForDutyCycleOf1()
+        {
+            double dutyCycle = 1.0;
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            double expected = 1.0;
+            SquareWave sw = new SquareWave(dutyCycle);
+            foreach (double phase in phases)
+            {
+                Assert.AreEqual(sw.Value(phase), expected);
+            }
+        }
+
+
+        [TestMethod]
+        public void Value_ReturnsKnownResults_ForKnownInputs()
+        {
+        }
     }
 }

@@ -23,5 +23,25 @@ namespace GOHWaveform
             }
             this.dutyCycle = dutyCycle;
         }
+
+        public double Value(double phase)
+        {
+            phase %= 2 * Math.PI;
+            if (dutyCycle == 0.0)
+            {
+                return 0.0;
+            } else if(phase >= 0.0 && phase < 2*Math.PI*dutyCycle)
+            {
+                return 1.0;
+            } else if (2 * Math.PI * dutyCycle <= phase && phase < 2 * Math.PI)
+            {
+                return 0;
+            } else if (dutyCycle == 1.0)
+            {
+                return 1.0;
+            }
+            string exceptionMessage = string.Format("Unable to provide value for phase ({0}) and duty cycle ({1})", phase, dutyCycle);
+            throw new InvalidOperationException(exceptionMessage);
+        }
     }
 }
