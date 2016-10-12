@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOHWaveform", "GOHWaveform\GOHWaveform.csproj", "{3BC68A69-41EA-4D66-9A05-08BEABEB992A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GOHWaveformTests", "GOHWaveformTests\GOHWaveformTests.csproj", "{E8E04F9F-E823-42CA-894F-CD89011EB82A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3BC68A69-41EA-4D66-9A05-08BEABEB992A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BC68A69-41EA-4D66-9A05-08BEABEB992A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BC68A69-41EA-4D66-9A05-08BEABEB992A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E04F9F-E823-42CA-894F-CD89011EB82A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E04F9F-E823-42CA-894F-CD89011EB82A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E04F9F-E823-42CA-894F-CD89011EB82A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E04F9F-E823-42CA-894F-CD89011EB82A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
