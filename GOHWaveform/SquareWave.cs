@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GOHWaveform
 {
-    public class SquareWave
+    public class SquareWave : Waveform
     {
         public const string DutyCycleNegativeMessage = "Negative duty cycle not allowed.";
         public const string DutyCycleAbove1 = "Duty cycle greather than 1 not allowed.";
