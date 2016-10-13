@@ -64,6 +64,70 @@ namespace GOHWaveformTests
             }
         }
 
-        
+        [TestMethod]
+        public void Value_Returns0_AtBothEndsOfPeriod()
+        {
+            double[] dutyCycles = { 0.0, 0.5, 1.0 };
+            double[] phases = { 0.0, 2 * Math.PI };
+            foreach (double dutyCycle in dutyCycles)
+            {
+                TriangleWave tw = new TriangleWave(dutyCycle);
+                foreach (double phase in phases)
+                {
+                    double expected = 0.0;
+                    double actual = tw.Value(phase);
+                    if (actual != expected)
+                    {
+                        String message = "";
+                        message += "Duty Cycle: " + dutyCycle;
+                        message += "\nPhase: " + phase;
+                        message += "\nExpected: " + expected;
+                        message += "\nActual: " + actual;
+                        Assert.AreEqual(0.0, tw.Value(phase), message);
+                    }
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Value_Returns1_AtHalfDutyCyclePhase_ForDutyCycleGreaterThan0()
+        {
+            double[] dutyCycles = { 0.5, 1.0 };
+            foreach (double dutyCycle in dutyCycles)
+            {
+                TriangleWave tw = new TriangleWave(dutyCycle);
+                double phase = dutyCycle * 2.0 * Math.PI / 2.0;
+                double actual = tw.Value(phase);
+                double expected = 1.0;
+                if (actual != expected)
+                {
+                    String message = "";
+                    message += "Duty Cycle: " + dutyCycle;
+                    message += "\nPhase: " + phase;
+                    message += "\nExpected: " + expected;
+                    message += "\nActual: " + actual;
+                    Assert.AreEqual(expected, tw.Value(phase), message);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Value_ReturnsKnownValues_ForKnownPhases()
+        {
+            double dutyCycle = 0.32;
+            double[] phases = { 0.0, 0.08*2*Math.PI, 0.24 * 2 * Math.PI, 0.32 * 2 * Math.PI, 0.99 * 2.0 * Math.PI, 2.0 * Math.PI };
+            double[] expectedValues = { 0.0, 0.5, 0.5, 0.0, 0.0, 0.0 };
+            TriangleWave tw = new TriangleWave(dutyCycle);
+            Assert.AreEqual(phases.Length, expectedValues.Length, "Known inputs and results test sets do not contain the same number of values.");
+            for (int count = 0; count < phases.Length; count++)
+            {
+                double phase = phases[count];
+                double actual = tw.Value(phase);
+                double expected = expectedValues[count];
+                string message = string.Format("Phase: {0}\nExpected: {1}\nActual:{2}", phase, expected, actual);
+                Assert.AreEqual(actual, expected, message);
+            }
+        }
+
     }
 }

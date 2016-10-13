@@ -59,9 +59,9 @@ namespace GOHWaveformTests
             double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
             foreach (double dutyCycle in dutyCycles)
             {
+                SquareWave sw = new SquareWave(dutyCycle);
                 foreach (double phase in phases)
                 {
-                    SquareWave sw = new SquareWave(dutyCycle);
                     Assert.IsInstanceOfType(sw.Value(phase), typeof(double));
                 }
             }

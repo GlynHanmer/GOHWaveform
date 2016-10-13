@@ -21,7 +21,15 @@ namespace GOHWaveform
 
         public double Value(double phase)
         {
-            return 0.0;
+            phase %= 2.0 * Math.PI;
+            if (0.0 <= phase && phase < dutyCycle * Math.PI)
+            {
+                return phase / dutyCycle / Math.PI;
+            } else if (dutyCycle * Math.PI <= phase && phase < dutyCycle * 2.0 * Math.PI) {
+                return 2.0 - phase / dutyCycle / Math.PI;
+            } else {
+                return 0.0;
+            }
         }
     }
 }
