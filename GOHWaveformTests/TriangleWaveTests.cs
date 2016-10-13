@@ -29,7 +29,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, Errors.DutyCycleNegativeMessage);
+                StringAssert.Contains(e.Message, Constants.DutyCycleNegativeMessage);
                 return;
             }
             Assert.Fail();
@@ -46,7 +46,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, Errors.DutyCycleAbove1);
+                StringAssert.Contains(e.Message, Constants.DutyCycleAbove1);
                 return;
             }
             Assert.Fail();
@@ -56,7 +56,7 @@ namespace GOHWaveformTests
         public void Value_ReturnsDouble()
         {
             double dutyCycle = 0.25;
-            double[] phases = { 0.0, 0.2, dutyCycle * 2.0 * Math.PI, 3.0, 2.0 * Math.PI };
+            double[] phases = { 0.0, 0.2, dutyCycle * Constants._2PI, 3.0, Constants._2PI };
             TriangleWave tw = new TriangleWave(dutyCycle);
             foreach (double phase in phases)
             {
@@ -96,7 +96,7 @@ namespace GOHWaveformTests
             foreach (double dutyCycle in dutyCycles)
             {
                 TriangleWave tw = new TriangleWave(dutyCycle);
-                double phase = dutyCycle * 2.0 * Math.PI / 2.0;
+                double phase = dutyCycle * Constants._2PI / 2.0;
                 double actual = tw.Value(phase);
                 double expected = 1.0;
                 if (actual != expected)
@@ -115,7 +115,7 @@ namespace GOHWaveformTests
         public void Value_ReturnsKnownValues_ForKnownPhases()
         {
             double dutyCycle = 0.32;
-            double[] phases = { 0.0, 0.08*2*Math.PI, 0.24 * 2 * Math.PI, 0.32 * 2 * Math.PI, 0.99 * 2.0 * Math.PI, 2.0 * Math.PI };
+            double[] phases = { 0.0, 0.08 * Constants._2PI, 0.24 * Constants._2PI, 0.32 * Constants._2PI, 0.99 * Constants._2PI, Constants._2PI };
             double[] expectedValues = { 0.0, 0.5, 0.5, 0.0, 0.0, 0.0 };
             TriangleWave tw = new TriangleWave(dutyCycle);
             Assert.AreEqual(phases.Length, expectedValues.Length, "Known inputs and results test sets do not contain the same number of values.");
@@ -128,6 +128,5 @@ namespace GOHWaveformTests
                 Assert.AreEqual(actual, expected, message);
             }
         }
-
     }
 }

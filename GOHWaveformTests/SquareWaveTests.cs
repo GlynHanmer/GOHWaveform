@@ -29,7 +29,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, Errors.DutyCycleNegativeMessage);
+                StringAssert.Contains(e.Message, Constants.DutyCycleNegativeMessage);
                 return;
             }
             Assert.Fail();
@@ -46,7 +46,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, Errors.DutyCycleAbove1);
+                StringAssert.Contains(e.Message, Constants.DutyCycleAbove1);
                 return;
             }
             Assert.Fail();
@@ -56,7 +56,7 @@ namespace GOHWaveformTests
         public void Value_ReturnsDouble()
         {
             double[] dutyCycles = { 0.0, 0.5, 1.0 };
-            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, Constants._2PI };
             foreach (double dutyCycle in dutyCycles)
             {
                 SquareWave sw = new SquareWave(dutyCycle);
@@ -71,7 +71,7 @@ namespace GOHWaveformTests
         public void Value_Returns0AlwaysForDutyCycleOf0()
         {
             double dutyCycle = 0.0;
-            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, Constants._2PI };
             double expected = 0.0;
             SquareWave sw = new SquareWave(dutyCycle);
             foreach (double phase in phases)
@@ -84,7 +84,7 @@ namespace GOHWaveformTests
         public void Value_Returns1AlwaysForDutyCycleOf1()
         {
             double dutyCycle = 1.0;
-            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, 2 * Math.PI };
+            double[] phases = { 0.0, 0.25 * Math.PI, 0.5 * Math.PI, Constants._2PI };
             double expected = 1.0;
             SquareWave sw = new SquareWave(dutyCycle);
             foreach (double phase in phases)
@@ -98,7 +98,7 @@ namespace GOHWaveformTests
         public void Value_ReturnsKnownValues_ForKnownPhases()
         {
             double dutyCycle = 0.25;
-            double[] phases = { 0.0, 0.2, dutyCycle * 2.0 * Math.PI, 3.0, 2.0 * Math.PI };
+            double[] phases = { 0.0, 0.2, dutyCycle * Constants._2PI, 3.0, Constants._2PI };
             double[] expectedValues = { 1.0, 1.0, 0.0, 0.0, 1.0 };
             SquareWave sw = new SquareWave(dutyCycle);
             Assert.AreEqual(phases.Length, expectedValues.Length, "Known inputs and results test sets do not contain the same number of values.");

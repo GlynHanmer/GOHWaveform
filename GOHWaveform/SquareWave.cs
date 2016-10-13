@@ -10,10 +10,10 @@ namespace GOHWaveform
         {
             if (dutyCycle < 0.0)
             {
-                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Errors.DutyCycleNegativeMessage);
+                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Constants.DutyCycleNegativeMessage);
             } else if (dutyCycle > 1.0)
             {
-                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Errors.DutyCycleAbove1);
+                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Constants.DutyCycleAbove1);
             }
             this.dutyCycle = dutyCycle;
         }
@@ -21,10 +21,10 @@ namespace GOHWaveform
         public double Value(double phase)
         {
             phase %= 2 * Math.PI;
-            if(phase >= 0.0 && phase < 2*Math.PI*dutyCycle)
+            if(phase >= 0.0 && phase < Constants._2PI * dutyCycle)
             {
                 return 1.0;
-            } else if (2 * Math.PI * dutyCycle <= phase && phase < 2 * Math.PI)
+            } else if (Constants._2PI * dutyCycle <= phase && phase < Constants._2PI)
             {
                 return 0.0;
             }
