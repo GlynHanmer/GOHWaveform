@@ -29,7 +29,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, SquareWave.DutyCycleNegativeMessage);
+                StringAssert.Contains(e.Message, Errors.DutyCycleNegativeMessage);
                 return;
             }
             Assert.Fail();
@@ -46,7 +46,7 @@ namespace GOHWaveformTests
             catch (ArgumentOutOfRangeException e)
             {
                 Assert.IsInstanceOfType(e, typeof(ArgumentOutOfRangeException));
-                StringAssert.Contains(e.Message, SquareWave.DutyCycleAbove1);
+                StringAssert.Contains(e.Message, Errors.DutyCycleAbove1);
                 return;
             }
             Assert.Fail();
