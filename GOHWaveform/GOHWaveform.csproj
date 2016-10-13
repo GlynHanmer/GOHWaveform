@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TriangleWave.cs" />
     <Compile Include="Waveform.cs" />
     <Compile Include="SquareWave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
