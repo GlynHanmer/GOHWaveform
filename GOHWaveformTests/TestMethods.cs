@@ -17,11 +17,13 @@ namespace GOHWaveformTests
                 if (actual != expected)
                 {
                     String message = "";
-                    message += "Duty Cycle: " + wf.DutyCycle;
+                    message += "Test Pair: " + count;
+                    message += "\nDuty Cycle: " + wf.DutyCycle;
                     message += "\nPhase: " + phase;
                     message += "\nExpected: " + expected;
                     message += "\nActual: " + actual;
-                    Assert.AreEqual(expected, actual, message);
+                    double tolerance = Math.Abs(expected) * 0.00001;
+                    Assert.AreEqual(expected, actual, tolerance, message);
                 }
             }
         }

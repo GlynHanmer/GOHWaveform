@@ -129,9 +129,20 @@ namespace GOHWaveformTests
             }
         }
 
+        [TestMethod]
         public void Value_ReturnsKnownResults_ForKnownPhases_BeforeAndAfterSetDutyCycle()
         {
-            throw new NotImplementedException();
+            double initialDutyCycle = 0.25;
+            double[] initialPhases = { 0.0, initialDutyCycle / 2.0 * Math.PI, initialDutyCycle * Math.PI, 3.0 / 2.0 * initialDutyCycle * Math.PI, Constants._2PI };
+            double[] initialexpectedValues = { 0.0, 0.5, 1.0, 0.5, 0.0 };
+            TriangleWave tw = new TriangleWave(initialDutyCycle);
+            TestMethods.TestKnownInputsAgainstKnownResults(tw, initialPhases, initialexpectedValues);
+
+            double finalDutyCycle = 0.6;
+            double[] finalPhases = { 0.0, finalDutyCycle / 2.0 * Math.PI, finalDutyCycle * Math.PI, 3.0 / 2.0 * finalDutyCycle * Math.PI, Constants._2PI };
+            double[] finalExpectedValues = { 0.0, 0.5, 1.0, 0.5, 0.0 };
+            tw.DutyCycle = finalDutyCycle;
+            TestMethods.TestKnownInputsAgainstKnownResults(tw, finalPhases, finalExpectedValues);
         }
     }
 }

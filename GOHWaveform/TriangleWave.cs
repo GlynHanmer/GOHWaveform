@@ -44,7 +44,16 @@ namespace GOHWaveform
 
         private void SetDutyCycle(double dutyCycle)
         {
-            throw new NotImplementedException();
+            if (dutyCycle < 0.0)
+            {
+                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Constants.DutyCycleNegativeMessage);
+            }
+            else if (dutyCycle > 1.0)
+            {
+                throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Constants.DutyCycleAbove1);
+            }
+            this._dutyCycle = dutyCycle;
+            return;
         }
     }
 }
