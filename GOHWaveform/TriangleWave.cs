@@ -4,8 +4,18 @@ namespace GOHWaveform
 {
     public class TriangleWave : Waveform
     {
-        private double dutyCycle;
-
+        private double _dutyCycle;
+        public double DutyCycle
+        {
+            get
+            {
+                return _dutyCycle;
+            }
+            set
+            {
+                SetDutyCycle(value);
+            }
+        }
         public TriangleWave(double dutyCycle)
         {
             if (dutyCycle < 0.0)
@@ -16,20 +26,25 @@ namespace GOHWaveform
             {
                 throw new ArgumentOutOfRangeException("dutyCycle", dutyCycle, Constants.DutyCycleAbove1);
             }
-            this.dutyCycle = dutyCycle;
+            this._dutyCycle = dutyCycle;
         }
 
         public double Value(double phase)
         {
             phase %= Constants._2PI;
-            if (0.0 <= phase && phase < dutyCycle * Math.PI)
+            if (0.0 <= phase && phase < _dutyCycle * Math.PI)
             {
-                return phase / dutyCycle / Math.PI;
-            } else if (dutyCycle * Math.PI <= phase && phase < dutyCycle * Constants._2PI) {
-                return 2.0 - phase / dutyCycle / Math.PI;
+                return phase / _dutyCycle / Math.PI;
+            } else if (_dutyCycle * Math.PI <= phase && phase < _dutyCycle * Constants._2PI) {
+                return 2.0 - phase / _dutyCycle / Math.PI;
             } else {
                 return 0.0;
             }
+        }
+
+        private void SetDutyCycle(double dutyCycle)
+        {
+            throw new NotImplementedException();
         }
     }
 }

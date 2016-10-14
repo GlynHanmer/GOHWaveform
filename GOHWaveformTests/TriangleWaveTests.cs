@@ -5,7 +5,7 @@ using GOHWaveform;
 namespace GOHWaveformTests
 {
     [TestClass]
-    public class TriangleWaveTests
+    public class TriangleWaveTests : WaveformTests
     {
         [TestMethod]
         public void Constructor_ReturnsTriangleWave()
