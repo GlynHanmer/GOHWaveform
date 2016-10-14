@@ -138,33 +138,13 @@ namespace GOHWaveformTests
             double[] initialPhases = { 0.0, 0.2, initialDutyCycle * Constants._2PI, 3.0, Constants._2PI };
             double[] initialexpectedValues = { 1.0, 1.0, 0.0, 0.0, 1.0 };
             SquareWave sw = new SquareWave(initialDutyCycle);
-            TestKnownInputsAgainstKnownResults(sw, initialPhases, initialexpectedValues);
+            TestMethods.TestKnownInputsAgainstKnownResults(sw, initialPhases, initialexpectedValues);
 
             double finalDutyCycle = 0.6;
             double[] finalPhases = { 0.0, 0.2, initialDutyCycle * Constants._2PI, 3.0, 6.0, Constants._2PI };
             double[] finalExpectedValues = { 1.0, 1.0, 1.0, 1.0, 0.0, 1.0 };
             sw.DutyCycle = finalDutyCycle;
-            TestKnownInputsAgainstKnownResults(sw, finalPhases, finalExpectedValues);
-        }
-
-        private void TestKnownInputsAgainstKnownResults(SquareWave sw, double[] knownInputs, double[] knownResults)
-        {
-            Assert.AreEqual(knownInputs.Length, knownResults.Length, "Known inputs and results test sets do not contain the same number of values.");
-            for (int count = 0; count < knownInputs.Length; count++)
-            {
-                double phase = knownInputs[count];
-                double actual = sw.Value(phase);
-                double expected = knownResults[count];
-                if (actual != expected)
-                {
-                    String message = "";
-                    message += "Duty Cycle: " + sw.DutyCycle;
-                    message += "\nPhase: " + phase;
-                    message += "\nExpected: " + expected;
-                    message += "\nActual: " + actual;
-                    Assert.AreEqual(expected, actual, message);
-                }
-            }
+            TestMethods.TestKnownInputsAgainstKnownResults(sw, finalPhases, finalExpectedValues);
         }
     }
 }

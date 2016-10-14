@@ -52,6 +52,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TestMethods.cs" />
     <Compile Include="WaveformTests.cs" />
     <Compile Include="SquareWaveTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

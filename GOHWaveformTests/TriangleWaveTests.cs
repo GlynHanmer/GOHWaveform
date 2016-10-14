@@ -128,5 +128,10 @@ namespace GOHWaveformTests
                 Assert.AreEqual(actual, expected, message);
             }
         }
+
+        public void Value_ReturnsKnownResults_ForKnownPhases_BeforeAndAfterSetDutyCycle()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
